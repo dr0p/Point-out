@@ -19,7 +19,17 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+
+  gem 'less'
+  gem 'therubyracer'
+  gem 'less-rails'
+  gem 'less-rails-bootstrap'
+  gem 'less-rails-bootswatch'
+
+  gem 'bootstrap-sass'
+  gem 'bootswatch-rails'
 end
+
 
 gem 'jquery-rails'
 

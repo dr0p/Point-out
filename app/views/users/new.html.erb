@@ -2,34 +2,36 @@
 
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <div class="error_messages">
+  <h2>Form is invalid</h2>
+  <ul>
+    <% for message in @user.errors.full_messages %>
+      <li><%= message %></li>
   <% end %>
-  <p>
-    <%= f.label :name%>
-    <%= f.text_field :name%>
-  </p>
-  <p>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </p>
-  <p>
-    <%= f.label :account_type%>
-    <%= f.select :account_type, options_for_select([["User", "user"], ["PM", "pm"]]) %>
-  </p>
-  <p class="button"><%= f.submit "Create account" %></p>
-<% end %>
+  </ul>
+</div>
+          <% end %>
+<p>
+<%= f.label :name%>
+<%= f.text_field :name%>
+</p>
+<p>
+<%= f.label :email %>
+<%= f.text_field :email %>
+</p>
+<p>
+<%= f.label :password %>
+<%= f.password_field :password %>
+</p>
+<p>
+<%= f.label :password_confirmation %>
+<%= f.password_field :password_confirmation %>
+</p>
+<p>
+<%= f.label :account_type%>
+<%= f.select :account_type, options_for_select([["User", "user"], ["PM", "pm"]]) %>
+</p>
+<p class="button">
+<%= f.submit "Create account" %>
+</p>
+        <% end %>
