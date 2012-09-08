@@ -30,6 +30,7 @@ group :assets do
   gem 'bootswatch-rails'
 end
 
+gem 'awesome_print'
 
 gem 'jquery-rails'
 
