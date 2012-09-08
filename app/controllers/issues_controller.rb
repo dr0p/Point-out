@@ -31,6 +31,7 @@ class IssuesController < ApplicationController
 
     #@issue.update_attributes(:opened => DateTime.now.to_date)
     @issue.update_attribute(:opened, DateTime.now.to_date)
+    @issue.update_attribute(:raised_by, current_user.email) 
 
     respond_to do |format|
       format.html # new.html.erb
