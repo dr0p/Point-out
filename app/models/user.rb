@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+
+  has_many :issues
   #attr_accessible :account_type, :email, :name, :password_hash, :password_salt
   attr_accessible :email, :password, :password_confirmation, :account_type, :name
 
