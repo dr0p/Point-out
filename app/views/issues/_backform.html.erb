@@ -1,0 +1,58 @@
+<%= form_for(@issue) do |f| %>
+  <% if @issue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
+
+      <ul>
+      <% @issue.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  <div class="field" style="display: none;"">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field" style="display: none;"">
+    <%= f.label :opened %><br />
+    <%= f.date_select :opened %>
+  </div>
+  <div class="field" style="display: none;"">
+    <%= f.label :closed %><br />
+    <%= f.date_select :closed %>
+  </div>
+  <div class="field" style="display: none;"">
+    <%= f.label :raised_by %><br />
+    <%= f.text_field :raised_by %>
+  </div>
+  <div class="field" style="display: none;"">
+    <%= f.label :owner %><br />
+    <%= f.text_field :owner %>
+  </div>
+  <div class="field">
+    <%= f.label :priority %><br />
+    <%= f.number_field :priority %>
+  </div>
+  <div class="field" style="display: none;"">
+    <%= f.label :progress %><br />
+    <%= f.text_area :progress %>
+  </div>
+  <div class="field" style="display: none;"">
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

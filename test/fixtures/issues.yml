@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  title: MyString
+  description: MyString
+  opened: 2012-09-08 09:07:01
+  closed: 2012-09-08 09:07:01
+  raised_by: MyString
+  owner: MyString
+  priority: 1
+  progress: MyText
+  status: MyString
+
+two:
+  user_id: 1
+  title: MyString
+  description: MyString
+  opened: 2012-09-08 09:07:01
+  closed: 2012-09-08 09:07:01
+  raised_by: MyString
+  owner: MyString
+  priority: 1
+  progress: MyText
+  status: MyString
