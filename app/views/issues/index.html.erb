@@ -2,7 +2,8 @@
   <h1>Reported issues</h1>
 </div>
 
-<table>
+<table class="table table-striped table-bordered table-condensed pagination-centered">
+
   <tr>
     <th>Issue id</th>
     <th>User</th>
@@ -15,9 +16,11 @@
     <th>Priority</th>
     <th>Progress</th>
     <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <% if current_user.account_type == 'pm' %>
+      <th></th>
+      <th></th>
+      <th></th>
+    <% end %>
   </tr>
 
 <% @issues.each do |issue| %>
@@ -33,9 +36,11 @@
     <td><%= issue.priority %></td>
     <td><%= issue.progress %></td>
     <td><%= issue.status %></td>
-    <td><%= link_to 'Show', issue %></td>
-    <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
-    <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% if current_user.account_type == 'pm' %>
+      <td><%= link_to 'Show', issue %></td>
+      <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
+      <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

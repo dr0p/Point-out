@@ -1,0 +1,55 @@
+diff --git a/app/assets/stylesheets/custom.css.scss b/app/assets/stylesheets/custom.css.scss
+index 28bc685..0177905 100644
+--- a/app/assets/stylesheets/custom.css.scss
++++ b/app/assets/stylesheets/custom.css.scss
+@@ -20,3 +20,12 @@ html {
+ @import "bootswatch/spacelab/bootswatch";
+ 
+ // Other self-defined styles goes below
++
++.center-table
++{
++  margin: 0 auto !important;
++  float: none !important;
++}
++
++.pagination-centered{text-align:center;}
++
+diff --git a/app/controllers/sessions_controller.rb b/app/controllers/sessions_controller.rb
+index cd9a78f..721a135 100644
+--- a/app/controllers/sessions_controller.rb
++++ b/app/controllers/sessions_controller.rb
+@@ -7,7 +7,6 @@ class SessionsController < ApplicationController
+     if user
+       session[:user_id] = user.id
+       #redirect_to root_url, :notice => "Logged in!"
+-      #redirect_to "/issues#index"
+       redirect_to issues_url
+     else
+       flash.now.alert = "Invalid email or password"
+diff --git a/app/views/issues/index.html.erb b/app/views/issues/index.html.erb
+index b379931..4b77f8b 100644
+--- a/app/views/issues/index.html.erb
++++ b/app/views/issues/index.html.erb
+@@ -2,7 +2,8 @@
+   <h1>Reported issues</h1>
+ </div>
+ 
+-<table>
++<table class="table table-striped table-bordered table-condensed pagination-centered">
++
+   <tr>
+     <th>Issue id</th>
+     <th>User</th>
+diff --git a/app/views/layouts/issue.html.erb b/app/views/layouts/issue.html.erb
+index 30af5e4..c8df8a6 100644
+--- a/app/views/layouts/issue.html.erb
++++ b/app/views/layouts/issue.html.erb
+@@ -8,6 +8,7 @@
+ </head>
+ <!-- <body data-offset="50" data-target=".subnav" data-spy="scroll" data-twttr-rendered="true"> -->
+ <body>
++
+ <%= yield %>
+ 
+ 

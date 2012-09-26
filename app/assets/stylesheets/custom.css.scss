@@ -20,3 +20,12 @@ html {
 @import "bootswatch/spacelab/bootswatch";
 
 // Other self-defined styles goes below
+
+.center-table
+{
+  margin: 0 auto !important;
+  float: none !important;
+}
+
+.pagination-centered{text-align:center;}
+

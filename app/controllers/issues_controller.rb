@@ -7,6 +7,9 @@ class IssuesController < ApplicationController
   def index
     @issues = Issue.all
 
+    p "------"
+    p current_user.account_type
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @issues }
