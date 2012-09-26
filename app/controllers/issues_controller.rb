@@ -1,14 +1,12 @@
 class IssuesController < ApplicationController
   layout "issue"
 
+  helper_method :sort_column, :sort_direction
 
   # GET /issues
   # GET /issues.json
   def index
-    @issues = Issue.all
-
-    p "------"
-    p current_user.account_type
+    @issues = Issue.order(sort_column + " " + sort_direction)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -89,5 +87,13 @@ class IssuesController < ApplicationController
       format.html { redirect_to issues_url }
       format.json { head :no_content }
     end
+  end
+
+  def sort_column
+    Issue.column_names.include?(params[:sort]) ? params[:sort] : "id"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end
