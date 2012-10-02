@@ -20,11 +20,11 @@
     <th><%= sortable "title" %></th>
     <th><%= sortable "description" %></th>
     <th><%= sortable "opened" %></th>
+    <th><%= sortable "deadline" %></th>
     <th><%= sortable "closed" %></th>
     <th><%= sortable "raised_by", "Raised by" %></th>
     <th><%= sortable "owner" %></th>
     <th><%= sortable "priority" %></th>
-    <th><%= sortable "progress" %></th>
     <th><%= sortable "status" %></th>
     <th></th>
 <% if current_user.account_type == 'pm' %>
@@ -41,11 +41,11 @@
     <td><%= issue.title %></td>
     <td><%= issue.description %></td>
     <td><%= issue.opened %></td>
+    <td><%= issue.deadline%></td>
     <td><%= issue.closed %></td>
     <td><%= issue.raised_by %></td>
     <td><%= issue.owner %></td>
     <td><%= issue.priority %></td>
-    <td><%= issue.progress %></td>
     <td><%= issue.status %></td>
     <td>
       <%= link_to 'Solved!', :action => 'solve_issue', :id => issue.id %>

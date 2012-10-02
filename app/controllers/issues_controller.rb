@@ -98,7 +98,10 @@ class IssuesController < ApplicationController
   end
 
   def solve_issue
-    @issue = Issue.find(params[:id]).update_attribute(:status, "solved")
+    @issue = Issue.find(params[:id])
+    @issue.update_attribute(:closed, DateTime.now.to_date)
+    @issue.update_attribute(:owner, current_user.email)
+    @issue.update_attribute(:status, "solved")
     redirect_to issues_url
   end
 end

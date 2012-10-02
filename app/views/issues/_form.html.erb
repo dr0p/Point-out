@@ -22,6 +22,11 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
+    <%= f.label :deadline%><br />
+    <%= f.date_select :deadline %>
+
+  </div>
+  <div class="field">
     <%= f.label :priority %><br />
     <%= f.select :priority, options_for_select([["1 - low",1], [2,2], [3,3], [4,4], ["5 - HIGH!!",5]]) %>
   </div>
