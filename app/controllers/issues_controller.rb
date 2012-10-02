@@ -96,4 +96,9 @@ class IssuesController < ApplicationController
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
+
+  def solve_issue
+    @issue = Issue.find(params[:id]).update_attribute(:status, "solved")
+    redirect_to issues_url
+  end
 end

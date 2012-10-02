@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.7'
+gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -23,8 +23,10 @@ end
 
 gem 'jquery-rails'
 
-gem 'twitter-bootswatch-rails', '~> 2.1.1.0'
-gem 'twitter-bootswatch-rails-helpers', '~> 2.1.1.1'
+#gem 'twitter-bootswatch-rails', '~> 2.1.1.0'
+#gem 'twitter-bootswatch-rails-helpers', '~> 2.1.1.1'
+gem 'twitter-bootswatch-rails'
+gem 'twitter-bootswatch-rails-helpers'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
