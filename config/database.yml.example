@@ -6,7 +6,6 @@ development:
   pool: 5
   timeout: 5000
   username: point_it
-  password: point_it
 
 
 test:
@@ -25,4 +24,3 @@ production:
   host: localhost
   pool: 5
   username: point_it
-  password: point_it
