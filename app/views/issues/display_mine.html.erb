@@ -1,6 +1,7 @@
 <div class="hero-unit">
-  <h1>Reported issues</h1>
+  <h1>Mine issues</h1>
 </div>
+
 
 <div class="navbar">
   <div class="navbar-inner">
@@ -13,6 +14,7 @@
       </ul>
   </div>
 </div>
+
 
 <table class="table table-striped table-bordered table-condensed pagination-centered pretty">
 
@@ -27,7 +29,7 @@
     <th><%= sortable "owner" %></th>
     <th><%= sortable "priority" %></th>
     <th><%= sortable "status" %></th>
-    <th></th>
+    <!--<th></th>-->
 <% if current_user.account_type == 'pm' %>
       <th></th>
       <th></th>
@@ -36,7 +38,6 @@
   </tr>
 
 <% @issues.each do |issue| %>
-  <% if not issue.status == "solved" %>
   <tr>
     <td><%= issue.id%></td>
     <td><%= issue.title %></td>
@@ -47,12 +48,13 @@
     <td><%= issue.raised_by %></td>
     <td><%= issue.owner %></td>
     <td><%= issue.priority %></td>
-    <td><%= issue.status %></td>
     <td>
-      <%= link_to 'Solve it!', :action => 'solve_issue', :id => issue.id %>
+      <% if issue.status == "solved" %>
+        <%= issue.status %>
+      <% else %>
+        <%= link_to 'Solve it!', :action => 'solve_issue', :id => issue.id %>
+      <% end %>
     </td>
-
-
 
     <% if current_user.account_type == 'pm' %>
       <td><%= link_to 'Show', issue %></td>
@@ -60,12 +62,11 @@
       <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
   </tr>
-  <% end %>
 <% end %>
 </table>
 
 <br />
-      <% if current_user.account_type == 'no_such_acc' %>
+      <% if current_user.account_type == 'dupa' %>
         <div class="btn-group">
           <a class="btn btn-primary" href="#"><i class="icon-wrench icon-white"></i> Actions</a>
           <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>

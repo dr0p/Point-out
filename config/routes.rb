@@ -1,7 +1,8 @@
 PointOut::Application.routes.draw do
+  match "/issues/mine" => "issues#display_mine"
 
   resources :issues
-  resources :users
+  #resources :users
   resources :sessions
 
   get "log_out" => "sessions#destroy", :as => "log_out"

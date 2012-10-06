@@ -1,12 +1,20 @@
 class IssuesController < ApplicationController
   layout "issue"
 
+  #before_filter :load_user
+  before_filter :email_id
+
   helper_method :sort_column, :sort_direction
 
   # GET /issues
   # GET /issues.json
   def index
-    @issues = Issue.order(sort_column + " " + sort_direction)
+    if !@user.nil?
+      @issues = @user.issues.order(sort_column + " " + sort_direction)
+    else
+      @issues = Issue.order(sort_column + " " + sort_direction)
+    end
+    #@issues = Issue.order(sort_column + " " + sort_direction)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -33,6 +41,7 @@ class IssuesController < ApplicationController
     #@issue.update_attributes(:opened => DateTime.now.to_date)
     @issue.update_attribute(:opened, DateTime.now.to_date)
     @issue.update_attribute(:raised_by, current_user.email) 
+    @issue.update_attribute(:user_id,  User.find_by_email(current_user.email).id)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -103,5 +112,33 @@ class IssuesController < ApplicationController
     @issue.update_attribute(:owner, current_user.email)
     @issue.update_attribute(:status, "solved")
     redirect_to issues_url
+  end
+
+  def display_mine
+    @issues = User.find_by_email(current_user.email).issues
+    #@issues = Issue.find_all_by_user_id(@id)
+    ap @issues
+    #@issues = Issue.find_all_by_user_id(@id).order(sort_column + " " + sort_direction)
+    #@issues = Issue.order(sort_column + " " + sort_direction)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @issues }
+    end
+  end
+
+  private
+
+  def load_user
+    #@user = (!params[:user_id].nil?) ? User.find(params[:user_id]) : User.find_by_email(current_user.email)
+    if !params[:user_id].nil?
+      @user = User.find(params[:user_id])
+    else
+      @user = User.find_by_email(current_user.email)
+    end
+  end
+
+  def email_id
+    @id = User.find_by_email(current_user.email)
   end
 end
