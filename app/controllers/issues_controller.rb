@@ -2,6 +2,7 @@ class IssuesController < ApplicationController
   layout "issue"
 
   #before_filter :load_user
+  before_filter :check_if_user_logged
   before_filter :email_id
 
   helper_method :sort_column, :sort_direction
@@ -140,5 +141,8 @@ class IssuesController < ApplicationController
 
   def email_id
     @id = User.find_by_email(current_user.email)
+  end
+  def check_if_user_logged
+    redirect_to "/log_in" if current_user.nil?
   end
 end
