@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       redirect_to log_in_url
     else
       render "new"
+      redirect_to log_in_url
     end
   end
 
