@@ -37,12 +37,10 @@ PointOut::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address              => "localhost",
-    #:address              => "smtp.gmail.com",
+    :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => 'PointIt',
     :user_name            => 'point.it.mail@gmail.com',
-    :password             => 'mail.it.point',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
 
