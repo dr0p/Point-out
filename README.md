@@ -18,10 +18,10 @@ I have used (so far) only very basic gems:
 + all issues section (all opened system issues)
 + mine issues section (where you can see issues connected with yourself)
 + two types of users (User & PM)
++ PM has ability to assign issue to the particular user
 
 ## TODO
 
-- create db field (:assigned_to), which will be assigned by PM to the partucular user,
 - enhance 'mine issues' view, that every user can see following sections: opened issues, my solutions, other solutions
 - let users authenticate accounts using FB, GH, GMAIL, ...
 - darken the whole app
