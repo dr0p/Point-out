@@ -12,6 +12,7 @@ PointOut::Application.routes.draw do
   root :to => "sessions#new"
 
   match "/issues/:id/solve_issue" => "issues#solve_issue"
+  match "/issues/:id/assign_issue" => "issues#assign_issue"
 
   resources :users do
     resources :issues

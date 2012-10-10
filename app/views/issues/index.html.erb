@@ -20,6 +20,7 @@
     <th><%= sortable "id", "Issue id"%></th>
     <th><%= sortable "title" %></th>
     <th><%= sortable "description" %></th>
+    <th>Assigned to</th>
     <th><%= sortable "opened" %></th>
     <th><%= sortable "deadline" %></th>
     <th><%= sortable "closed" %></th>
@@ -41,6 +42,7 @@
     <td><%= issue.id%></td>
     <td><%= issue.title %></td>
     <td><%= issue.description %></td>
+    <td><%= issue.user_id %></td>
     <td><%= issue.opened %></td>
     <td><%= issue.deadline%></td>
     <td><%= issue.closed %></td>
@@ -55,7 +57,27 @@
 
 
     <% if current_user.account_type == 'pm' %>
-      <td><%= link_to 'Show', issue %></td>
+      <td>
+        <div class="btn-group">
+          <a class="btn btn-primary" href="#"><i class="icon-list icon-white"></i> Assign to:</a>
+          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% @mails_list.each do |mail| %>
+              <!--<li><a href="#"><i class="icon-pencil"></i> Edit</a></li>-->
+              <!--<li><a href="/issues/<%#= issue.id %>" data-method="delete" rel="nofollow"><i class="icon-trash"></i> Delete</a>-->
+              <!--<a href="issues/<%#= issue.id %>"><i class="icon-ok"></i> Root</a></li>-->
+              <!--<li class="divider"></li>-->
+              <!--<li><a href="#"><i class="i"></i> Make admin</a></li>-->
+
+              <!-- <li><a href="#"><i class="icon-user"></i> <%= mail %></a></li>-->
+              <!--<li><%#= link_to mail, issues_path, :mail => mail %></li>-->
+              <li><%= link_to mail, :action => 'assign_issue' , :id => issue.id, :mail => mail %></li>
+            <% end %>
+          </ul>
+        </div>
+
+      </td>
+
       <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
       <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
@@ -65,29 +87,3 @@
 </table>
 
 <br />
-      <% if current_user.account_type == 'no_such_acc' %>
-        <div class="btn-group">
-          <a class="btn btn-primary" href="#"><i class="icon-wrench icon-white"></i> Actions</a>
-          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
-            <li><a href="/issues/<%= issue.id %>" data-method="delete" rel="nofollow"><i class="icon-trash"></i> Delete</a>
-            <!--<a href="issues/<%= issue.id %>"><i class="icon-ok"></i> Root</a></li>-->
-            <li class="divider"></li>
-            <li><a href="#"><i class="i"></i> Make admin</a></li>
-          </ul>
-        </div>
-
-        <div class="btn-group">
-          <a class="btn btn-primary" href="#"><i class="icon-wrench icon-white"></i> Actions</a>
-          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="<%= root_url%>"><i class="icon-ok"></i> Root</a></li>
-            <li><a href="#"><i class="icon-ok"></i> Solved</a></li>
-            <li class="divider"></li>
-            <li><a href="#"><i class="i"></i> Make admin</a></li>
-          </ul>
-        </div>
-
-      <% end %>
-

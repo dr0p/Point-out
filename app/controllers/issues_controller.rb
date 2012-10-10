@@ -4,6 +4,7 @@ class IssuesController < ApplicationController
   #before_filter :load_user
   before_filter :check_if_user_logged
   before_filter :email_id
+  before_filter :mails_list
 
   helper_method :sort_column, :sort_direction
 
@@ -112,6 +113,7 @@ class IssuesController < ApplicationController
     @issue.update_attribute(:closed, DateTime.now.to_date)
     @issue.update_attribute(:owner, current_user.email)
     @issue.update_attribute(:status, "solved")
+    @issue.update_attribute(:user_id,  User.find_by_email(current_user.email).id)
     redirect_to issues_url
   end
 
@@ -126,6 +128,12 @@ class IssuesController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @issues }
     end
+  end
+
+  def assign_issue
+    @issue = Issue.find(params[:id])
+    @issue.update_attribute(:user_id, User.find_by_email(params[:mail])["id"])
+    redirect_to issues_url
   end
 
   private
@@ -144,5 +152,9 @@ class IssuesController < ApplicationController
   end
   def check_if_user_logged
     redirect_to "/log_in" if current_user.nil?
+  end
+
+  def mails_list
+    @mails_list = User.select(:email).map(&:email)
   end
 end
